@@ -7,5 +7,5 @@ The project is built to be used in VS Codes Devcontainer. Thus, the prerequisite
 * [VS Code Remote Development Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
 # Usage
-It's easy: Clone the repository, open the project in VS Code and select "Remote-Containers: Open Folder in Container..." from the command palette.
+Clone the repository, open the project in VS Code and select "Remote-Containers: Open Folder in Container..." from the command palette.
 
