@@ -9,10 +9,20 @@ os.environ["C8Y_USER"] = "korbinian.butz@softwareag.com"
 os.environ["C8Y_PASSWORD"] = "secret-password"
 os.environ["C8Y_SETTINGS_CI"] = "TRUE"
 
-# Send 'c8y devices list' and read output
+
+# A simple GET command
 output = subprocess.run(["c8y", "devices", "list"], capture_output=True)
-if output.returncode != 0:
-    print('PANIC. Command did not succeed. Stderr:\n', output.stderr.decode("utf-8") )
-else:
-    print('Command succeeded. Stdout:\n', output.stdout.decode('utf-8'))
+print('return code: ', output.returncode)
+print('stdout: ', output.stderr.decode("utf-8") )
+print('stderr: ', output.stdout.decode('utf-8'))
+
+
+# Chain a command with static text (echo 'device_a\ndevice_b' | c8y devices create --dry')
+cmd = 'c8y devices create --dry'
+cmd_call = subprocess.Popen(cmd.split(), stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+output, errors = cmd_call.communicate(input="device_a\ndevice_b\n")
+cmd_call.wait()
+print('return code: ', cmd_call.returncode)
+print('stdout: ', output)
+print('stderr: ', errors)
 

@@ -12,4 +12,3 @@ RUN echo 'source "/etc/go-c8y-cli/shell/c8y.plugin.zsh"' >> ~/.zshrc
 # Some helper tools
 RUN apt install jq -y
 RUN sudo apt-get -y install coreutils
-CMD [ "source /root/.zshrc", "zsh"]
