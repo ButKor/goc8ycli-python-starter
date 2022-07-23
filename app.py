@@ -1,7 +1,7 @@
 import json
-from subprocess import PIPE, Popen
 import subprocess
 import os
+
 
 # Redirect go-c8y to your tenant via ENVVARs
 os.environ["C8Y_HOST"] = "https://example.cumulocity.com"
@@ -29,8 +29,8 @@ print('stderr: ', errors)
 
 
 # OPTION 3: Run any chained command using Popen
-cmd = 'seq -f "device_%05g" 1 2 | c8y devicess create --dry'
-with Popen(cmd, stdout=PIPE, stderr=PIPE, shell=True) as process:
+cmd = 'seq -f "device_%05g" 1 2 | c8y devices create --dry'
+with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True) as process:
     output, error = process.communicate()
     print('return code: ', process.returncode)
     print('stdout: ', 'none' if output == '' else output.decode('utf-8'))
